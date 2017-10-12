@@ -7,13 +7,14 @@ import org.w3c.dom.Text;
  */
 
 public class Makanan {
-    private String title, desc, bahan;
+    private String title, desc, bahan, prosedur;
     private int img;
 
-    public Makanan(String title, String desc, String bahan, int img) {
+    public Makanan(String title, String desc, String bahan, String prosedur, int img) {
         this.title = title;
         this.desc = desc;
         this.bahan = bahan;
+        this.prosedur = prosedur;
         this.img = img;
     }
 
@@ -39,6 +40,14 @@ public class Makanan {
 
     public void setBahan(String bahan) {
         this.bahan = bahan;
+    }
+
+    public String getProsedur() {
+        return prosedur;
+    }
+
+    public void setProsedur(String prosedur) {
+        this.prosedur = prosedur;
     }
 
     public int getImg() {

@@ -2,6 +2,11 @@ package com.oho.listmakanan;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
+import android.os.Parcelable;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -11,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.util.ArrayList;
 
@@ -40,6 +46,9 @@ public class MknAdapter extends RecyclerView.Adapter<MknAdapter.MknHolder> {
         holder.txtTitle.setText(dataMkn.get(position).getTitle());
         holder.txtDesc.setText(dataMkn.get(position).getDesc());
         holder.txtBahan.setText(dataMkn.get(position).getBahan());
+        holder.txtProsedur.setText(dataMkn.get(position).getProsedur());
+        holder.img.setImageResource(dataMkn.get(position).getImg());
+
     }
 
     @Override
@@ -50,7 +59,7 @@ public class MknAdapter extends RecyclerView.Adapter<MknAdapter.MknHolder> {
     public class MknHolder extends RecyclerView.ViewHolder
         implements View.OnClickListener{
 
-        TextView txtTitle, txtDesc, txtBahan;
+        TextView txtTitle, txtDesc, txtBahan, txtProsedur;
         ImageView img;
 
         public MknHolder(View itemView) {
@@ -58,6 +67,7 @@ public class MknAdapter extends RecyclerView.Adapter<MknAdapter.MknHolder> {
             txtTitle = (TextView) itemView.findViewById(R.id.id_title);
             txtDesc = (TextView) itemView.findViewById(R.id.id_desc);
             txtBahan = (TextView) itemView.findViewById(R.id.id_bahan);
+            txtProsedur = (TextView) itemView.findViewById(R.id.id_prosedur);
             img = (ImageView) itemView.findViewById(R.id.id_img);
 
 
@@ -66,10 +76,10 @@ public class MknAdapter extends RecyclerView.Adapter<MknAdapter.MknHolder> {
         @Override
         public void onClick(View view) {
             /*Toast.makeText(itemView.getContext(), txtTitle.getText()+" - "+txtDesc.getText(), Toast.LENGTH_LONG).show();*/
-
             Intent it = new Intent(itemView.getContext(), DetailMkn.class);
             it.putExtra("txtBahan", txtBahan.getText().toString());
-            it.putExtra("img", R.drawable.menu_gofood);
+            it.putExtra("txtProsedur", txtProsedur.getText().toString());
+            it.putExtra("img", R.drawable.img);
             ctx.startActivity(it);
         }
     }
