@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
+    android:layout_margin="15sp"
     tools:context="com.oho.listmakanan.DetailMkn">
 
 
@@ -16,17 +17,16 @@
         app:srcCompat="@android:color/black" />
 
     <TextView
-        android:id="@+id/id_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="TextView" />
+        android:text="Bahan - Bahan :"/>
 
     <TextView
-        android:id="@+id/id_desc"
+        android:id="@+id/id_bahan"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="TextView" />
+        android:text="TextView"/>
 
 </LinearLayout>

@@ -15,12 +15,12 @@ public class DetailMkn extends AppCompatActivity {
         setContentView(R.layout.activity_detail_mkn);
         Bundle it = getIntent().getExtras();
 
-        TextView txtTitle = (TextView) findViewById(R.id.id_title);
-        TextView txtDesc = (TextView) findViewById(R.id.id_desc);
+
+        TextView txtBahan = (TextView) findViewById(R.id.id_bahan);
         ImageView img = (ImageView) findViewById(R.id.id_img);
 
-        txtTitle.setText(it.getCharSequence("txtTitle"));
-        txtDesc.setText(it.getCharSequence("txtDesc"));
+
+        txtBahan.setText(it.getCharSequence("txtBahan"));
         img.setImageResource(it.getInt("img"));
 
 

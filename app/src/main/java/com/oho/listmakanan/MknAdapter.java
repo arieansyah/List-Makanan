@@ -2,12 +2,6 @@ package com.oho.listmakanan;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
-import android.net.Uri;
-import android.os.Bundle;
-import android.os.Parcelable;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -19,9 +13,6 @@ import android.widget.Toast;
 
 import java.io.File;
 import java.util.ArrayList;
-
-import static android.R.attr.bitmap;
-import static android.R.attr.path;
 
 /**
  * Created by borneo on 05/10/17.
@@ -48,8 +39,7 @@ public class MknAdapter extends RecyclerView.Adapter<MknAdapter.MknHolder> {
     public void onBindViewHolder(MknAdapter.MknHolder holder, int position) {
         holder.txtTitle.setText(dataMkn.get(position).getTitle());
         holder.txtDesc.setText(dataMkn.get(position).getDesc());
-        holder.img.setImageResource(dataMkn.get(position).getImg());
-
+        holder.txtBahan.setText(dataMkn.get(position).getBahan());
     }
 
     @Override
@@ -60,13 +50,14 @@ public class MknAdapter extends RecyclerView.Adapter<MknAdapter.MknHolder> {
     public class MknHolder extends RecyclerView.ViewHolder
         implements View.OnClickListener{
 
-        TextView txtTitle, txtDesc;
+        TextView txtTitle, txtDesc, txtBahan;
         ImageView img;
 
         public MknHolder(View itemView) {
             super(itemView);
             txtTitle = (TextView) itemView.findViewById(R.id.id_title);
             txtDesc = (TextView) itemView.findViewById(R.id.id_desc);
+            txtBahan = (TextView) itemView.findViewById(R.id.id_bahan);
             img = (ImageView) itemView.findViewById(R.id.id_img);
 
 
@@ -77,11 +68,8 @@ public class MknAdapter extends RecyclerView.Adapter<MknAdapter.MknHolder> {
             /*Toast.makeText(itemView.getContext(), txtTitle.getText()+" - "+txtDesc.getText(), Toast.LENGTH_LONG).show();*/
 
             Intent it = new Intent(itemView.getContext(), DetailMkn.class);
-            it.putExtra("txtTitle", txtTitle.getText().toString());
-            it.putExtra("txtDesc", txtDesc.getText().toString());
+            it.putExtra("txtBahan", txtBahan.getText().toString());
             it.putExtra("img", R.drawable.menu_gofood);
-
-
             ctx.startActivity(it);
         }
     }
