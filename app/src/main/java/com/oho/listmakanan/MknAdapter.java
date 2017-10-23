@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -41,48 +42,35 @@ public class MknAdapter extends RecyclerView.Adapter<MknAdapter.MknHolder> {
         return new MknHolder(mknView);
     }
 
-    @Override
-    public void onBindViewHolder(MknAdapter.MknHolder holder, int position) {
-        holder.txtTitle.setText(dataMkn.get(position).getTitle());
-        holder.txtDesc.setText(dataMkn.get(position).getDesc());
-        holder.txtBahan.setText(dataMkn.get(position).getBahan());
-        holder.txtProsedur.setText(dataMkn.get(position).getProsedur());
-        holder.img.setImageResource(dataMkn.get(position).getImg());
+    public class MknHolder extends RecyclerView.ViewHolder {
 
-    }
-
-    @Override
-    public int getItemCount() {
-        return dataMkn.size();
-    }
-
-    public class MknHolder extends RecyclerView.ViewHolder
-        implements View.OnClickListener{
-
-        TextView txtTitle, txtDesc, txtBahan, txtProsedur;
-        ImageView img;
+        TextView txtTitle, txtDesc;
+        RelativeLayout rl;
 
         public MknHolder(View itemView) {
             super(itemView);
             txtTitle = (TextView) itemView.findViewById(R.id.id_title);
             txtDesc = (TextView) itemView.findViewById(R.id.id_desc);
-            txtBahan = (TextView) itemView.findViewById(R.id.id_bahan);
-            txtProsedur = (TextView) itemView.findViewById(R.id.id_prosedur);
-            img = (ImageView) itemView.findViewById(R.id.id_img);
-
-
-            itemView.setOnClickListener(this);
-        }
-        @Override
-        public void onClick(View view) {
-            /*Toast.makeText(itemView.getContext(), txtTitle.getText()+" - "+txtDesc.getText(), Toast.LENGTH_LONG).show();*/
-            Intent it = new Intent(itemView.getContext(), DetailMkn.class);
-            it.putExtra("txtBahan", txtBahan.getText().toString());
-            it.putExtra("txtProsedur", txtProsedur.getText().toString());
-            it.putExtra("img", R.drawable.img);
-            ctx.startActivity(it);
+            rl = (RelativeLayout) itemView.findViewById(R.id.rl_id);
         }
     }
+        @Override
+        public void onBindViewHolder(MknAdapter.MknHolder holder, final int position) {
+            holder.txtTitle.setText(dataMkn.get(position).getTitle());
+            holder.txtDesc.setText(dataMkn.get(position).getDesc());
 
-
+            holder.rl.setOnClickListener(new View.OnClickListener(){
+                public void onClick(View view) {
+                    Intent it = new Intent(ctx, DetailMkn.class);
+                    it.putExtra("txtBahan", dataMkn.get(position).getBahan());
+                    it.putExtra("txtProsedur", dataMkn.get(position).getProsedur());
+                    it.putExtra("img", dataMkn.get(position).getImg());
+                    ctx.startActivity(it);
+                }
+            });
+        }
+    @Override
+    public int getItemCount() {
+        return dataMkn.size();
+    }
 }

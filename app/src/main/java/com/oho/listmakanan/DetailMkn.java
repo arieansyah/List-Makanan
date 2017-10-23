@@ -22,7 +22,7 @@ public class DetailMkn extends AppCompatActivity {
 
         txtProsedur.setText(it.getCharSequence("txtProsedur"));
         txtBahan.setText(it.getCharSequence("txtBahan"));
-        img.setImageResource(it.getInt("img"));
+        img.setImageResource(it.getInt("img",0));
 
 
 
